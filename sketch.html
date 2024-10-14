@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etch-A-Sketch</title>
+    <link rel="stylesheet" href="sketch.css">
+</head>
+<body>
+    <button id="gridSizeButton">Change Grid Size</button>
+    <br><br>
+    <div id="myDIV"></div>
+    <p class="demo"></p>
+</body>
+
+    <script>
+function etchTheSketch(input){
+    for(i=0;i<(input*input);i++){
+        const innerDiv = document.createElement("div");
+        innerDiv.style.cssText = "box-sizing: border-box; flex: 1 1 20px;"
+        innerDiv.style.flexBasis = `calc(100% / ${input})`;
+        innerDiv.addEventListener("mouseover", function() {
+        const colors = ['red', 'green', 'blue', 'purple', 'orange'];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        this.style.backgroundColor = randomColor;
+        });
+        document.getElementById("myDIV").appendChild(innerDiv); 
+    }
+}
+function clearGrid() {
+  myDIV.innerHTML = '';  // Clears all the items inside the container
+}
+
+const resizeGridButton = document.getElementById("gridSizeButton");
+resizeGridButton.addEventListener("click", function() {
+    let userInput = prompt("What size would you like your etch-a-sketch to be? Must be under 100 pixels. Default 16X16.");
+    if (userInput > 0 && userInput <= 100){
+        clearGrid(); 
+        etchTheSketch(userInput);
+    }
+    else {
+        alert("You've entered an incorrect value.");
+    }
+});
+etchTheSketch(16);
+    </script>
+
+</body>
+
+</html>

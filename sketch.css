@@ -1,0 +1,13 @@
+#myDIV {
+  display: flex;
+  flex-wrap: wrap;
+  width: 640px;
+  height: 640px;
+  border: 2px solid black;
+  }
+
+.innerDiv{
+  flex-grow: 1;
+  aspect-ratio: 1 / 1; /* Forces squares to stay square */
+  box-sizing: border-box;
+}
